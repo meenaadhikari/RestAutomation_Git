@@ -1,9 +1,12 @@
 package LandlordAPI;
 
+import java.util.*;
+
 public class Landlord {
 	private String firstName;
 	private String lastName;
 	private boolean trusted;
+	private List<Object> apartments;
 
 	public Landlord() {
 
@@ -12,6 +15,7 @@ public class Landlord {
 		this.firstName=FN;
 		this.lastName=LN;
 		this.trusted=trusted;
+		this.apartments = new ArrayList<Object>();
 	}
 
 	public String getFirstName() {
@@ -32,5 +36,10 @@ public class Landlord {
 	public void setTrusted(boolean trusted) {
 		this.trusted = trusted;
 	}
-
+	public List<Object> getApartments() {
+		return apartments;
+	}
+	public void setApartments(List<Object> apartments) {
+		this.apartments = apartments;
+	}
 }
