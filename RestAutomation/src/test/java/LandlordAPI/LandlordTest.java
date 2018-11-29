@@ -1,12 +1,15 @@
 package LandlordAPI;
 import org.testng.annotations.Test;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.http.ContentType;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import java.util.*;
+//import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class LandlordTest {
 	String global_ID;
@@ -30,7 +33,6 @@ public class LandlordTest {
 		
 		Landlord  landLord  = new Landlord("aana","sa",true); // POJO object named landlord. 
 		
-		
 		// POST the new landlord
 		String str=given() 
 				.contentType(ContentType.JSON) 
@@ -39,7 +41,9 @@ public class LandlordTest {
 				.post("http://localhost:8080/landlords") 
 				.then() 
 				.statusCode(201) // status code is 201
-				.extract().response().body().prettyPrint();
+				.and()
+				.body(matchesJsonSchemaInClasspath("landlord-response-schema.json")) // matches schema with post
+				.extract().response().prettyPrint();
 		
 		// we need to extract ID
 		JsonPath path = new JsonPath(str); 
@@ -87,6 +91,9 @@ public class LandlordTest {
 		.put("http://localhost:8080/landlords/{id}") 
 		.then()
 		.statusCode(200) // check status code to be 200, OK.
+		// Validate meassge = Landlord with id: {id} successfully updated
+		.and()
+		.body(matchesJsonSchemaInClasspath("landlord-put-response.json")) // matches schema with put
 		.extract().response().prettyPrint();  
 	}
 	
@@ -109,7 +116,7 @@ public class LandlordTest {
 	}
 	
 	// Question 5
-	@Test(enabled=true, priority=2)
+	@Test(enabled=false, priority=2)
 	public void Question5_getLandlordFromQuestion3() {
 		
 		given()

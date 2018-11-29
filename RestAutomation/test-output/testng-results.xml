@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="2459" started-at="2018-11-29T18:30:59Z" finished-at="2018-11-29T18:31:02Z">
+  <suite name="Default suite" duration-ms="2250" started-at="2018-11-29T20:00:07Z" finished-at="2018-11-29T20:00:09Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="2459" started-at="2018-11-29T18:30:59Z" finished-at="2018-11-29T18:31:02Z">
+    <test name="Default test" duration-ms="2250" started-at="2018-11-29T20:00:07Z" finished-at="2018-11-29T20:00:09Z">
       <class name="LandlordAPI.LandlordTest">
-        <test-method status="PASS" signature="Question3_putLandlord()[pri:0, instance:LandlordAPI.LandlordTest@6d78f375]" name="Question3_putLandlord" duration-ms="2387" started-at="2018-11-29T10:30:59Z" finished-at="2018-11-29T10:31:02Z">
+        <test-method status="PASS" signature="Question3_putLandlord()[pri:0, instance:LandlordAPI.LandlordTest@28feb3fa]" name="Question3_putLandlord" duration-ms="2239" started-at="2018-11-29T12:00:07Z" finished-at="2018-11-29T12:00:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Question3_putLandlord -->
-        <test-method status="PASS" signature="Question5_getLandlordFromQuestion3()[pri:0, instance:LandlordAPI.LandlordTest@6d78f375]" name="Question5_getLandlordFromQuestion3" duration-ms="57" started-at="2018-11-29T10:31:02Z" finished-at="2018-11-29T10:31:02Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Question5_getLandlordFromQuestion3 -->
       </class> <!-- LandlordAPI.LandlordTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
