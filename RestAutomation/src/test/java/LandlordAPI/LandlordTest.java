@@ -9,17 +9,18 @@ import static org.hamcrest.Matchers.*;
 import java.util.*;
 
 public class LandlordTest {
+	String global_ID;
 	// Question1: GET Request, Check Empty, Validate, 
 	@Test(enabled=false)
 	public void Question1_getLandlord() {  
-		given()
-		.when()
-		.get("http://localhost:8080/landlords")
-		.then()
-		.body("", is(empty()))
-		.and()
-		.statusCode(200)
-		.extract().response().body().prettyPrint();
+		given() 
+		.when() 
+		.get("http://localhost:8080/landlords") // GET
+		.then() 
+		.body("", is(empty())) // body is empty
+		.and() // and 
+		.statusCode(200) // check status code is 200
+		.extract().response().body().prettyPrint(); 
 	}
 	
 	
@@ -27,94 +28,98 @@ public class LandlordTest {
 	@Test(enabled=false)
 	public void Question2_postLandlord() { 
 		
-		Landlord landLord = new Landlord("aana","sa",true);
+		Landlord  landLord  = new Landlord("aana","sa",true); // POJO object named landlord. 
+		
+		
 		// POST the new landlord
-		String str=given()
-				.contentType(ContentType.JSON)
-				.body(landLord)
+		String str=given() 
+				.contentType(ContentType.JSON) 
+				.body(landLord) 
 				.when()
-				.post("http://localhost:8080/landlords")
-				.then()
+				.post("http://localhost:8080/landlords") 
+				.then() 
 				.statusCode(201) // status code is 201
 				.extract().response().body().prettyPrint();
 		
-		// Extract ID
-		JsonPath path = new JsonPath(str);
-		String ID = path.getString("id"); // returns ID
-		System.out.println(ID);
+		// we need to extract ID
+		JsonPath path = new JsonPath(str); 
+		String ID = path.getString("id"); 
+		System.out.println(ID); 
 
-		// Validate that the landlord exists via GET
+		// GET: Validate that the landlord id exists 
 		given()
-		.pathParam("id", ID)
+		.pathParam("id", ID) // dynamic content
 		.when()
-		.get("http://localhost:8080/landlords/{id}") // Dynamic content
-		.then()
+		.get("http://localhost:8080/landlords/{id}") 
+		.then() 
 		.extract().response().prettyPrint();
 	}
 	
 	// Question 3
-	@Test(enabled=true)
+	@Test(enabled=true, priority=1)
 	public void Question3_putLandlord() {
 		//POST
-		Landlord landLord = new Landlord("john","KL",true);
+		Landlord landLord = new Landlord("john","KL",true); 
+		
 		String str = given()
-		.contentType(ContentType.JSON)
+		.contentType(ContentType.JSON) 
 		.body(landLord)
 		.when()
 		.post("http://localhost:8080/landlords")
 		.then()
 		.statusCode(201)
 		.and()
-		.body("apartments", hasSize(equalTo(0)))
+		.body("apartments", hasSize(equalTo(0))) 
 		.extract().response().body().prettyPrint();
 		
-		JsonPath path = new JsonPath(str);
-		String ID = path.getString("id");
-		System.out.println(ID);
+		// we need to extract ID
+		JsonPath path = new JsonPath(str); 
+		global_ID = path.getString("id"); // store in global_ID
+		System.out.println(global_ID); 
 		
-		// PUT Request
-		Landlord landLord1 = new Landlord("antony","KL",true);
+		// PUT 
+		Landlord landLord1 = new Landlord("antony","KL",true); 
 		 given()
 		.contentType(ContentType.JSON)
-		.pathParam("id", ID)
-		.body(landLord1)
+		.pathParam("id", global_ID) // dynamic content
+		.body(landLord1) // new body for the ID.
 		.when()
-		.put("http://localhost:8080/landlords/{id}")
+		.put("http://localhost:8080/landlords/{id}") 
 		.then()
-		.statusCode(200)
-		.extract().response().prettyPrint(); // This message contains the validation  
+		.statusCode(200) // check status code to be 200, OK.
+		.extract().response().prettyPrint();  
 	}
 	
 	// Question 4
 	@Test(enabled=false)
 	public void Question4_editLandlord() {
 		String ID="4DKlS34";
-		Landlord landLord1 = new Landlord("saara","KL",true);
+		Landlord landLord1 = new Landlord("saara","KL",true); 
 		 given()
 		.contentType(ContentType.JSON)
-		.pathParam("id", ID)
+		.pathParam("id", ID)  
 		.body(landLord1)
 		.when()
-		.put("http://localhost:8080/landlords/{id}")
+		.put("http://localhost:8080/landlords/{id}") 
 		.then()
-		.statusCode(404)
+		.statusCode(404) // status code should be error : no landlord exist for
 		.and()
 		.body("message", is("There is no LandLord with id: 4DKlS34"))
 		.extract().response().prettyPrint();  
 	}
 	
 	// Question 5
-	@Test(enabled=false)
+	@Test(enabled=true, priority=2)
 	public void Question5_getLandlordFromQuestion3() {
-		String ID="k49Xngpu"; // ID generated from Question3
+		
 		given()
-		.pathParam("id", ID)
+		.pathParam("id", global_ID) // use global_ID from question 3
 		.when()
 		.get("http://localhost:8080/landlords/{id}")
 		.then()
-		.statusCode(200)
+		.statusCode(200) // check status code is 200, it means it already exists, because we created in Question 3.
 		.and()
-		.body("id", is(ID))
+		.body("id", is(global_ID)) // verify id matches with k49Xn
 		.and()
 		.body("firstName", is("antony"))
 		.and()
