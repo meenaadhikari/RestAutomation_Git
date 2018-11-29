@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="2250" started-at="2018-11-29T20:00:07Z" finished-at="2018-11-29T20:00:09Z">
+  <suite name="Default suite" duration-ms="2462" started-at="2018-11-29T20:22:14Z" finished-at="2018-11-29T20:22:17Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="2250" started-at="2018-11-29T20:00:07Z" finished-at="2018-11-29T20:00:09Z">
+    <test name="Default test" duration-ms="2462" started-at="2018-11-29T20:22:14Z" finished-at="2018-11-29T20:22:17Z">
       <class name="LandlordAPI.LandlordTest">
-        <test-method status="PASS" signature="Question3_putLandlord()[pri:0, instance:LandlordAPI.LandlordTest@28feb3fa]" name="Question3_putLandlord" duration-ms="2239" started-at="2018-11-29T12:00:07Z" finished-at="2018-11-29T12:00:09Z">
+        <test-method status="PASS" signature="Question3_putLandlord()[pri:0, instance:LandlordAPI.LandlordTest@28feb3fa]" name="Question3_putLandlord" duration-ms="2450" started-at="2018-11-29T12:22:14Z" finished-at="2018-11-29T12:22:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Question3_putLandlord -->

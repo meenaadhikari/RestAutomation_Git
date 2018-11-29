@@ -91,8 +91,8 @@ public class LandlordTest {
 		.put("http://localhost:8080/landlords/{id}") 
 		.then()
 		.statusCode(200) // check status code to be 200, OK.
-		// Validate meassge = Landlord with id: {id} successfully updated
 		.and()
+		.body("message", is("LandLord with id: " + global_ID + " successfully updated"))
 		.body(matchesJsonSchemaInClasspath("landlord-put-response.json")) // matches schema with put
 		.extract().response().prettyPrint();  
 	}
