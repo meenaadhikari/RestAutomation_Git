@@ -5,7 +5,7 @@
     <classes>
       <class name="LandlordAPI.LandlordTest">
         <methods>
-          <include name="putLandlord"/>
+          <include name="Question3_putLandlord"/>
         </methods>
       </class> <!-- LandlordAPI.LandlordTest -->
     </classes>
